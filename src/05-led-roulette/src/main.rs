@@ -11,41 +11,36 @@ fn main() -> ! {
 
     let half_period:u16 = 50; 
     loop {
-        // LOGIC : round + tail follows off
-        led_control(0,true,half_period,&mut delay,&mut leds);
-        led_control(0,false,half_period,&mut delay,&mut leds);
-
-        // LOGIC : round + tail follow off
-        for current in 0..8 {
-            led_control((current + 1) % 8,true,half_period,&mut delay,&mut leds);
-            led_control(current,false,half_period,&mut delay,&mut leds);
-        }
-
-        // MY SOLUTION for this : https://docs.rust-embedded.org/discovery/05-led-roulette/my-solution.html
+        // MY SOLUTION for 05-led-roulette : https://docs.rust-embedded.org/discovery/05-led-roulette/my-solution.html
         for curr in 0..8 {
-            leds[(next(curr + 1,8)) as usize].on();
-            delay.delay_ms(half_period);
-            leds[curr as usize].off();
-            delay.delay_ms(half_period);            
+            led_roulette(curr,8,half_period,&mut delay,&mut leds);            
         }
+
+        // Practice LOGIC : round + tail follows off one by one
+        // led_control(0,true,half_period,&mut delay,&mut leds);
+        // led_control(0,false,half_period,&mut delay,&mut leds);
+
     }
 }
 
 
-fn next(mut n:i32, mut divisor:i32)->i32{
-    if divisor!=0{
-    if n<0 {
-        n *=-1;
+fn led_roulette(c:i32, mut limit:i32,half_period:u16,delay:&mut Delay,leds:&mut Leds){
+    if limit!=0{
+        let mut n = c+1;
+        if n<0 {
+            n *=-1;
+        }
+        if limit<0 {
+            limit *= -1;
+        }
+        while n>=limit {
+            n -= limit;
+        }
+        leds[n as usize].on();
+        delay.delay_ms(half_period);
+        leds[c as usize].off();
+        delay.delay_ms(half_period);            
     }
-    if divisor<0 {
-        divisor *= -1;
-    }
-    while n>=divisor {
-        n -= divisor;
-    }
-    return n
-    }
-    0
 }
 
 fn led_control(led_index:usize,led_status:bool,half_period:u16,delay:&mut Delay,leds:&mut Leds) {

@@ -1,0 +1,1 @@
+{"rustc":13568843128949978479,"features":"[]","target":1930140138825942899,"profile":9935990280773120926,"path":16270975209796003490,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"thumbv7em-none-eabihf/debug/.fingerprint/panic-halt-d5f3e7bd1f495a77/dep-lib-panic_halt-d5f3e7bd1f495a77"}}],"rustflags":["-C","link-arg=-Tlink.x"],"metadata":2087078062977828973}

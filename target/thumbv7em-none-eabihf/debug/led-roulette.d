@@ -1,0 +1,1 @@
+/home/id/Desktop/code/discovery/target/thumbv7em-none-eabihf/debug/led-roulette: /home/id/Desktop/code/discovery/src/05-led-roulette/auxiliary/src/lib.rs /home/id/Desktop/code/discovery/src/05-led-roulette/src/main.rs

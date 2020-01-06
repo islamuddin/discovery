@@ -1,0 +1,3 @@
+cargo:rustc-link-search=/home/id/Desktop/code/discovery/target/rls/debug/build/f3-f814ff0c2ffe067a/out
+cargo:rerun-if-changed=build.rs
+cargo:rerun-if-changed=memory.x
